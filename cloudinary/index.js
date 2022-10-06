@@ -11,7 +11,7 @@ const storage = new CloudinaryStorage({
     cloudinary,
     params: {
         folder: 'Msg_It',
-        allowed_formats: ['jpeg', 'png', 'jpg', 'mp4', 'mov', 'avi', 'mkv', 'pdg', 'wepg']
+        allowed_formats: ['jpeg', 'png', 'jpg', 'mp4', 'mov', 'avi', 'mkv', 'pdf', 'wepg']
     }
 });
 const storage2 = new CloudinaryStorage({
