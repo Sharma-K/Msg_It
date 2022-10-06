@@ -1,0 +1,97 @@
+
+<% layout('layout/boilerplate') %>
+<div class="idx-img alposthead" >
+ 
+    <div >
+  <h1 class="headtext" id="headtext">All Posts</h1>
+</div>
+
+</div>
+<div class="searchpostcon">
+<input type="text" id="searchpost" class="searchpost" placeholder="Search Posts" onkeyup="sendPost(this)">
+<div class="searchpostscon">
+  <section id="searchposts" class="searchposts"></section>
+  </div>
+</div>
+
+
+
+<!-- <div class="news">
+<div class="newp">
+    <a href="/posts/new">
+      <img src="https://cdn-icons-png.flaticon.com/512/3658/3658773.png" width="40px" alt="">
+    </a>
+</div>
+</div> -->
+<% for(let post of posts) { %>
+
+  <% for(let user of users) {%> 
+    <% if(post.author._id.equals(user._id)) {%> 
+ 
+    <div class="container-index ">
+   
+  <div class="index_cards ">
+    <div class="index-card-container">
+      <div class="idxprofile">
+        <img src="<%=user.image[0].url%>" class="index-card-profile" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="idx-card-body">
+          <h5 class="card-title mt-2"><%=post.title  %> </h5>
+          <p class="card-text text-muted"> By: <a href="/profile/<%=user._id%>"><%=user.username%></a></p>
+          
+          
+        </div>
+        <%if(post.media[0]){%>
+          <img src="<%=post.media[0].url%>" class="idx-card-media" alt=".." height="300px" >
+          <a href="/posts/<%=post._id %>" class="btn btn-primary idx-card-button">View post</a>
+          <% }else{%> 
+          <a href="/posts/<%=post._id %>" class="btn btn-primary mt-2 mb-2">View post</a>
+          <% } %> 
+      </div>
+    </div>
+  </div>
+
+</div>
+<% } %> 
+<% } %> 
+ 
+    <% } %> 
+
+
+
+    <script>
+      function sendPost(e){
+        const searchResults = document.getElementById('searchposts');
+        let match = e.value.match(/^[a-zA-Z]*/);
+        let match2 = e.value.match(/\s*/);
+  
+        if(match2[0]===e.value){
+          searchResults.innerHTML = '';
+          return;
+        }
+        if(match[0]===e.value){
+        fetch('searchPosts',{
+          method: 'post',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({payload: e.value})
+        }).then(res => res.json()).then(data =>{
+          let payload = data.payload;
+       
+          searchResults.innerHTML = '';
+  
+          if(payload.length <1 ){
+            searchResults.innerHTML = '<p>Sorry Nothing Found </p>';
+            return;
+          }
+          payload.forEach((item, index) =>{
+  
+            if(index > 0 ) searchResults.innerHTML += '<hr>';
+            searchResults.innerHTML += `<a href='posts/${item._id}'>${item.title}</a>`;
+          });
+          
+      
+        });
+      }
+      }
+    </script>

@@ -1,0 +1,126 @@
+<%-layout('layout/boilerplate') %>
+
+    <div class="profile-body" id="blur">
+        <div class="container mt-4">
+
+            <img src="<%= user.image[0].url %>" class="profile-photo mx-auto d-block" alt="..">
+        </div>
+
+
+        <div class="text-center ">
+            <h2>
+                <%=user.username %>
+            </h2>
+
+            <div class="d-inline mt-3">
+                <ul class="d-inline">
+                    <li class="fol">
+                        <%=user.postc %> Posts
+                    </li>
+                    <li class="fol">
+                        <%= user.followers.length %> Followers
+                    </li>
+                    <li class="fol">
+                        <%= user.following.length %> Following
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="container text-center mt-3">
+            <%if(!user._id.equals(current._id)) { %>
+
+                <% if(!current.following.includes(user._id)){ %>
+                    <form action="/posts/<%=user._id%>/follow/?_method=PUT" method="post" id="followButton">
+                        <button class="btn btn-primary" >Follow</button>
+                    </form>
+               
+                    <% } else{%>
+                        <div class="access-button">
+      
+                           
+                            <button class="btn btn-primary me-2" onclick="chatbox()" onsubmit="submitForm()" >Message</button>
+                        
+                            <form action="/posts/<%=user._id%>/unfollow/?_method=PUT" method="post" id="followButton">
+                                <button class="btn btn-primary" >Unfollow</button>
+                            </form>
+                        </div>
+
+                        <% } %>
+                            <% } %>
+        </div>
+
+
+
+        <div class="text-center m-5" style=" border-bottom: 2px solid black;">
+            <h4>Posts</h4>
+        </div>
+
+
+        <div class="container">
+            <% for(let post of posts) {%>
+
+                <% if(post.author._id.equals(user._id)) {%>
+
+                    <div class="post-pr">
+
+                        <div class="card m-2 d-inline-block" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%=post.title %>
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-muted">By: <%=user.username%>
+                                </h6>
+                                <a href="/posts/<%=post._id %>" class="card-link">View Post</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <% } %>
+                        <%}%>
+        </div>
+
+    
+    
+    </div>
+    
+    <div class="chat-box" id="chat-box">
+        <div class="chat-heading">
+        <img src="<%= user.image[0].url %>" alt="">
+        <h3><%=user.username%> </h3>
+         <button class="btn btn-primary" onclick="chatbox()" >close</a>
+    </div>
+
+        <div class="msgbox" id="msgbox">
+           
+        </div>
+        
+        <input type="text" id="inp">
+        <button id="send-msg">send</button>
+        </div>
+
+ <script type="text/javascript">
+    function chatbox(){
+        
+        var box = document.getElementById('chat-box');
+        var body = document.getElementById('blur');
+        body.classList.toggle('active');
+        box.classList.toggle('active');
+    }
+   
+
+const obj = new chatEngine('msgbox', '<%=currentUser.username%>')
+console.log(obj);
+
+ 
+
+
+ </script>
+ 
+
+    

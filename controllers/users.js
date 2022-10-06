@@ -1,0 +1,149 @@
+const User = require('../models/user');
+const Post = require('../models/post');
+const catchAsync = require('../utils/catchAsync');
+
+
+
+module.exports.renderRegister = (req, res) => {
+    res.render('users/register');
+}
+
+module.exports.register = async (req, res, next) => {
+   
+       
+  try{
+        const { email, username, password } = req.body;
+        const user = new User({ email, username });
+        user.image = req.files.map(img => ({url: img.path, filename: img.filename}));
+       
+        const registeredUser = await User.register(user, password);
+       
+       
+        req.login(registeredUser, err =>{
+            if(err) {
+                console.log(err);
+                return next(err);
+            }
+            else
+            {
+                req.flash('sucess', 'Welcome ');
+            res.redirect('/posts');
+            }
+        });
+               
+  }
+  catch(e)
+  {
+    console.log(e);
+    req.flash('error', e.message);
+    res.redirect('login');
+    
+  }
+   
+}
+module.exports.renderLogin = (req, res) => {
+    res.render('users/login');
+}
+
+module.exports.login = (req, res) => {
+
+    req.flash('success', 'welcome back!');
+    const redirectUrl = req.session.returnTo || '/posts';
+    delete req.session.returnTo;
+    res.redirect(redirectUrl);
+}
+
+module.exports.logout = (req, res) =>{
+    req.logout(function(err) {
+        if (err) { return next(err); }
+        req.flash('success', "Goodbye!");
+        res.redirect('/posts');
+      });
+}
+
+module.exports.profile = async(req, res) => {
+
+    const {id}= req.params;
+    
+    const current = await User.findById(req.user._id);
+
+   
+    const user = await User.findById(id);
+
+    const posts = await Post.find({});
+    res.render('users/Profile', {user, posts, current});
+}
+
+module.exports.myProfile = async(req, res) =>{ 
+
+   
+    const user = await User.findById(req.user._id);
+
+    
+
+    const  posts  = await Post.find({});
+    res.render('users/myProfile', {user, posts});
+}
+
+
+module.exports.follow = async(req, res) =>{
+
+    // const {id}= req.params;
+    
+    // const check = await User.findById(req.user._id);
+    // const user = await User.findById(id);
+    const posts = await Post.find({});
+
+  
+const {id} = req.params;
+const current = await User.findById(req.user._id);
+const user = await User.findById(id)
+
+user.followers.push(req.user._id);
+current.following.push(id);
+// console.log('this is the user', user);
+// console.log('fan', current);
+
+await current.save();
+await user.save();
+res.redirect(`/profile/${id}`);
+// res.render('users/Profile', {user, posts, current});
+
+ 
+}
+
+module.exports.unfollow = async(req, res) =>{
+    const posts = await Post.find({});
+
+  
+    const {id} = req.params;
+    const current = await User.findById(req.user._id);
+    const user = await User.findById(id)
+    
+    user.followers.pull(req.user._id);
+    current.following.pull(id);
+    // console.log('this is the user', user);
+    // console.log('fan', current);
+    
+    await current.save();
+    await user.save();
+    res.redirect(`/profile/${id}`);
+    // res.render('users/Profile', {user, posts, current});
+
+    
+
+}
+
+
+module.exports.chat = async(req, res) =>{
+    // res.send('chat room');
+    const { cid, uid} = req.params;
+    const current = await User.findById(cid);
+    const user = await User.findById(uid);
+    // io.on('connection', socket=>{
+    //     console.log('io connection');
+    // })
+    // console.log(current,user);
+    res.render('users/chat', {current, user});
+    
+}

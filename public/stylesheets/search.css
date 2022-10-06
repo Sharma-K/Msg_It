@@ -1,0 +1,48 @@
+.search{
+    margin-top: 0;
+    /* margin-left: 500px; */
+    display: flex;
+   
+    width: 400px;
+    position: absolute;
+    background-color: white;
+}
+hr{
+    width: 100%;
+}
+
+.searchpost{
+    width: 300px;
+    font-size: 18px;
+    font-family: 'Montserrat';
+}
+.searchpostcon{
+  
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.searchposts  {
+    text-decoration: none;
+    color: black;
+  
+     width: 500px;
+
+  background-color: lightgrey;
+   box-shadow: 5px 5px 5px black;
+}
+.searchposts a{
+    text-decoration: none;
+    color: black;
+    margin-left: 5px;
+  background-color: lightgrey;
+}
+
+
+.searchpost:hover{
+    border: 2px solid teal;
+}
