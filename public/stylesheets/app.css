@@ -157,11 +157,12 @@ a:hover {
 .footer-custom {
     background-color: black;
     color: white;
-
+   position: sticky;
     bottom: 0;
     left: 0;
     right: 0;
     top: 100%;
+    width: 100%;
 }
 
 .fol {
@@ -377,4 +378,7 @@ a:hover {
     justify-content: center;
    
   }
+
+
+
 

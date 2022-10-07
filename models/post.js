@@ -30,7 +30,11 @@ const postSchema = new Schema({
         type: Number,
         default: 0
     },
-    media: [mediaSchema]
+    media: [mediaSchema],
+    likedPost: [{
+        type: Schema.Types.ObjectId,
+        ref: 'MsgUser'
+    }]
 
 })
 postSchema.post('findOneAndDelete', async function(doc) {

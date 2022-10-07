@@ -136,6 +136,33 @@ module.exports.deletePost = async (req, res) => {
     user.save();
     
     await Post.findByIdAndDelete(id);
-    req.flash('success', 'Successfully deleted campground');
+    req.flash('success', 'Successfully deleted post');
     res.redirect('/posts');
 };
+
+module.exports.likePost = async(req, res) => {
+
+    const { id } = req.params;
+    const post = await Post.findById(id);
+    const user = await User.findById(post.author._id);
+    var like = post.likes;
+    like++;
+
+    post.likedPost.push(req.user._id);
+    post.likes = like;
+    post.save();
+    
+    res.redirect(`/posts/${id}`);
+}
+
+module.exports.unlikePost = async(req, res) => {
+    const { id } = req.params;
+    const post = await Post.findById(id);
+    const user = await User.findById(post.author._id);
+    var like = post.likes;
+    like--;
+    post.likedPost.pull(req.user._id);
+    post.likes = like;
+    post.save();
+    res.redirect(`/posts/${id}`);
+}

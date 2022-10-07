@@ -27,4 +27,7 @@ router.route('/:id')
 
 router.get('/:id/edit',isLoggedIn, isAuthor, catchAsync(posts.editPost))
 
+router.post('/:id/like', isLoggedIn, catchAsync(posts.likePost));
+router.post('/:id/unlike', isLoggedIn, catchAsync(posts.unlikePost));
+
 module.exports = router;
