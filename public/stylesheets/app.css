@@ -188,10 +188,14 @@ a:hover {
 
 }
 
-
+.news{
+   position: relative;
+   left: 10%;
+  
+}
 .newp {
     cursor: pointer;
-    position: fixed;
+   position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -199,8 +203,8 @@ a:hover {
     height: 80px;
     background-color: #52ab98;
     border-radius: 50%;
-    margin-left: 80px;
-    margin-top: 150px;
+    box-shadow: 2px 10px 50px 10px grey;
+    
 
 }
 

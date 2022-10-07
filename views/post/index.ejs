@@ -7,22 +7,32 @@
 </div>
 
 </div>
+<div class="stext">
+  <i>Search Posts</i>
+  </div>
+  <div class="sbody">
 <div class="searchpostcon">
-<input type="text" id="searchpost" class="searchpost" placeholder="Search Posts" onkeyup="sendPost(this)">
+<input type="text" id="searchpost" class="searchpost" placeholder="" onkeyup="sendPost(this)">
+<i>
+  <img src="https://cdn-icons-png.flaticon.com/512/482/482631.png" alt="">
+</i>
+
 <div class="searchpostscon">
   <section id="searchposts" class="searchposts"></section>
   </div>
+  
+</div>
 </div>
 
 
 
-<!-- <div class="news">
+<div class="news">
 <div class="newp">
     <a href="/posts/new">
       <img src="https://cdn-icons-png.flaticon.com/512/3658/3658773.png" width="40px" alt="">
     </a>
 </div>
-</div> -->
+</div>
 <% for(let post of posts) { %>
 
   <% for(let user of users) {%> 
