@@ -31,6 +31,17 @@
     display: flex;
     background-color: rgb(78, 133, 145);
   }
+  .chat-heading .close{
+   /* background-color: red; */
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    position: relative;
+   left: 0;
+  }
+  .chat-heading .close:hover{
+    cursor: pointer;
+  }
 
   .chat-heading img{
     margin: 0.5rem;
@@ -108,4 +119,7 @@
     width: 80px;
     margin-top: 10px;
     border-radius: 3px;
+  }
+  .chat-box button:hover{
+    background-color: rgb(194, 194, 194);
   }

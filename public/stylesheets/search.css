@@ -1,12 +1,20 @@
 .search{
-    margin-top: 0;
-    /* margin-left: 500px; */
+    
     display: flex;
-   
-    width: 400px;
+   border-radius: 3px;
+    width: 600px;
+    box-shadow: 5px 6px 15px rgb(47, 47, 47);
     position: absolute;
     background-color: white;
 }
+
+
+.search a{
+    font-family: 'Montserrat';
+    font-size: 1.2em;
+    margin: 15px;
+}
+
 hr{
     width: 100%;
 }
@@ -51,18 +59,21 @@ position: relative;
 .searchposts  {
     text-decoration: none;
     color: black;
-  
-     width: 500px;
-
-  background-color: lightgrey;
-   box-shadow: 5px 5px 5px black;
+  width: 500px;
+   border-radius: 2px;
+  background-color: rgb(235, 233, 233);
+   box-shadow: 5px 6px 15px rgb(81, 81, 81);
 }
 .searchposts a{
     text-decoration: none;
-    color: black;
-    margin-left: 5px;
-  background-color: lightgrey;
+    color: teal;
+    margin: 5px;
+font-family: 'Montserrat';
+  background-color: rgb(235, 233, 233);
 }
+
+
+
 
 .searchpostcon:hover i{
     opacity: 0;
@@ -70,6 +81,8 @@ position: relative;
 .searchpostcon:hover .stext{
   visibility: none;
 }
+
+
 
 
 .searchpostcon:hover input{
