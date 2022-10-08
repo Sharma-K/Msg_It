@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const Post = require('../models/post');
 const User = require('../models/user');
-
+const { cloudinary } = require('../cloudinary');
 
 module.exports.index = async(req, res) =>{
      
@@ -63,6 +63,7 @@ module.exports.updatePost = async(req, res) =>{
     const {id} = req.params;
     
     const post = await Post.findByIdAndUpdate(id, {...req.body.post});
+    
     var currentdate = new Date(); 
 var fulltime = currentdate.getDate() + "/"
                 + (currentdate.getMonth()+1)  + "/" 
@@ -74,19 +75,25 @@ var fulltime = currentdate.getDate() + "/"
     {
     const img = req.files.map(f => ({url: f.path, filename: f.filename}))
     post.media.push(...img);
-     }
     await post.save();
+     }
+    
+     
   
     if(req.body.deleteImages)
     {
+        console.log(req.body.deleteImages);
         for(let filename of req.body.deleteImages)
         {
             await cloudinary.uploader.destroy(filename);
+            
         }
-      await campground.updateOne({$pull: {images: {filename: {$in: req.body.deleteImages}}}})
-   
-    }
+        await post.updateOne({$pull: {media: {filename: {$in: req.body.deleteImages}}}});
 
+    }
+  
+    console.log(post);
+   
     req.flash('success', 'Successfully updated post!');
     res.redirect(`/posts/${post._id}`);
 }

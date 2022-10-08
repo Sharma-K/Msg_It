@@ -1,8 +1,9 @@
 <%- layout('layout/boilerplate') %> 
+<div class="edit-body">
 <form action="/posts/<%=post._id%>?_method=PUT" method="post" enctype="multipart/form-data">
     
-    <div class="col-md-6 offset-3 align-items-center">
-        <h1 class="text-center">Edit Post</h1>
+    <div class="edit-container">
+        <h1 class="text-center mt-3" >Edit Post</h1>
     <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input type="text" class="form-control" id="title" name="post[title]" value="<%= post.title %>" >
@@ -28,6 +29,4 @@
       <button class="btn btn-success">Edit</button>
     </div>
 </form>
-<div class="mb-3">
-
 </div>

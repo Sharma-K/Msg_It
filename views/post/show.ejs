@@ -9,10 +9,12 @@
    <div class="d-flex flex-columns m-3">
       <img src="<%=user.image[0].url%>" class="rounded-circle" width="60px" height="50px" alt="...">
       <div class="d-block">
-      <h4 class="ms-3"><%= post.author.username %> </h4>
-      <a href="/profile/<%=user._id  %>" class="ms-3">View Profile</a>
+      
+      <a href="/profile/<%=user._id  %>" class="ms-3"><%= post.author.username %></a>
+     
       </div>
    </div>
+   <h2 class="card-title ms-3"><%=post.title %> </h2>
    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         
@@ -35,13 +37,16 @@
         </div>
         
    <div class="card-body">
-     <h5 class="card-title"><%=post.title %> </h5>
+   
      <p class="card-text"><%=post.description  %> </p>
      <p class="card-text"><small class="text-muted">Last updated <%=post.timeStamp %> </small></p>
      <% if(currentUser && post.author.equals(currentUser._id)) {%> 
-     <a class="btn btn-outline-primary" href="/posts/<%=post._id%>/edit">Edit</a>
+     <!-- <a class="btn btn-outline-primary" href="/posts/<%=post._id%>/edit">Edit</a> -->
+     <a href="/posts/<%=post._id%>/edit"><img src="https://cdn-icons-png.flaticon.com/512/2356/2356780.png" width="30px" alt=""></a>
      <form class="d-inline" action="/posts/<%=post._id  %>?_method=DELETE" method="post">
-     <button class="btn btn-danger">Delete</button>
+     <button class="like ms-4">
+      <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" width="30px" alt="">
+     </button>
    </form>
 
  
@@ -128,9 +133,11 @@
                 </form>
                </div>
              </div>
+             <% if(currentUser && comment.author.equals(currentUser._id)) {%>
              <form action="/posts/<%=post._id%>/comments/<%=comment._id%>?_method=DELETE" method="post">
                <button type="submit">Delete</button>
              </form>
+             <% } %> 
              </div>
             <% }} else {%> 
                <h2>
