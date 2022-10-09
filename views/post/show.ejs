@@ -106,9 +106,9 @@
 </div>
 <div class="comment-container">
   
-
+<div  style="border-bottom: 2px solid black;">
    <h4 >Comment Section:</h4>
-
+</div>
 
         <% if(post.comments.length>0){ %> 
          <% for(let comment of post.comments) {%>
@@ -147,7 +147,7 @@
            
              </div>
             <% }} else {%> 
-               <h2>
+               <h2 style="color: teal;">
                   No comments yet!
                </h2>
 <% } %> 
