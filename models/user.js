@@ -16,7 +16,9 @@ const userSchema = new Schema({
         unique: true
     },
     image: [profileSchema],
-
+description: {
+    type: String
+},
     postc: {
         type: Number,
         default: 0
