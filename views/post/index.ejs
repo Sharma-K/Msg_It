@@ -58,10 +58,10 @@
           
         </div>
         <%if(post.media[0]){%>
-          <img src="<%=post.media[0].url%>" class="idx-card-media" alt=".." height="300px" >
+          <img src="<%=post.media[0].url%>" class="idx-card-media" alt=".."  >
           <a href="/posts/<%=post._id %>" class="btn btn-primary idx-card-button">View post</a>
           <% }else{%> 
-          <a href="/posts/<%=post._id %>" class="btn btn-primary mt-2 mb-2">View post</a>
+          <a href="/posts/<%=post._id %>" class="btn btn-primary m-1">View post</a>
           <% } %> 
       </div>
     </div>

@@ -84,23 +84,24 @@
 
 
 
-
-
-
-</div>
-
-<div class="container m-3" id="cbox-con">
+ <div class="container m-3" id="cbox-con">
    
-<form action="/posts/<%=post._id%>/comments" method="post">
+   <form action="/posts/<%=post._id%>/comments" method="post">
+   
+      <label for="body">Add a comment:</label>
+      <textarea name="comment[body]" id="body" cols="50" rows="2"></textarea>
+      <div>
+         <button class="btn btn-primary mb-3">Submit</button>
+         </div>
+   
+   
+   </form>
+   </div>
 
-   <label for="body">Add a comment:</label>
-   <textarea name="comment[body]" id="body" cols="50" rows="2"></textarea>
-   <div>
-      <button class="btn btn-primary mb-3">Submit</button>
-      </div>
+
 </div>
 
-</form>
+
 </div>
 </div>
 <div class="comment-container">

@@ -274,7 +274,7 @@ a:hover {
 .idx-card-button{
     margin-top: 5px;
     margin-bottom: 5px;
-    width: 100%;
+    width: 80%;
 }
 
 .new-body, .edit-body{
@@ -442,13 +442,34 @@ a:hover {
     justify-content: center;
 }
 
-@media only screen and (max-width: 550px ) {
+@media only screen and (max-width: 615px ) {
+
+    .show-card, .comment-container .card, .index_cards{
+         width: 350px;
+    }
+    #cbox-con {
+        padding: 30px;
+    }
+    #cbox-con textarea {
+      
+        width: 100%;
+    }
+
+    .idx-card-media{
+        width: 330px;
+    }
+}
+
+@media only screen and (max-width: 850px ) {
     .news{
         display:none
     }
 
     .new-container, .edit-container{
         width: 350px;
+        height: auto;
     }
+
+   
 }
 
