@@ -291,6 +291,7 @@ a:hover {
 .new-container{
     margin-top: 45px;
     margin-bottom: 45px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -306,6 +307,7 @@ a:hover {
 .edit-container{
     margin-top: 45px;
     margin-bottom: 45px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -334,9 +336,10 @@ a:hover {
 #description,
 #media {
     color: teal;
-    /* text-align: center; */
+    text-align: center;
+
     margin: 4px;
-    width: 450px;
+    width: 100%;
     border-radius: 0%;
     border-left: none;
     border-right: none;
@@ -345,6 +348,7 @@ a:hover {
     font-family: 'Roboto';
 
 }
+
 .new-container #title:focus,
 #media:focus, #description:focus {
     box-shadow: none;
@@ -353,9 +357,9 @@ a:hover {
 #description,
 #media {
     color: teal;
-    /* text-align: center; */
+    text-align: center;
     margin: 4px;
-    width: 450px;
+    width: 100%;
     border-radius: 0%;
     border-left: none;
     border-right: none;
@@ -432,4 +436,19 @@ a:hover {
     display: flex;
 }
 
+
+.ftable{
+    display: flex;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 550px ) {
+    .news{
+        display:none
+    }
+
+    .new-container, .edit-container{
+        width: 350px;
+    }
+}
 

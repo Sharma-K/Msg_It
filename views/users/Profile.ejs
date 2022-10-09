@@ -12,26 +12,26 @@
 
 
         <div class="text-center ">
-            <h2>
+            <h2 style="color: teal;">
                 <%=user.username %>
             </h2>
-            <p>
+            <%if(user.description) {%> 
+            <i>
                 <%= user.description  %> 
-            </p>
+            </i>
+            <% }%> 
 
-            <div class="d-inline mt-3">
-                <ul class="d-inline">
+            <div class="mt-2 ftable">
+                
                     <li class="fol">
-                        <%=user.postc %> Posts
+                        <span style="color: teal; font-weight: bold;"><%=user.postc %></span> Posts
                     </li>
                     <li class="fol">
-                        <%= user.followers.length %> Followers
+                        <span style="color: teal; font-weight: bold;"><%= user.followers.length %></span> Followers
                     </li>
                     <li class="fol">
-                        <%= user.following.length %> Following
+                        <span style="color: teal; font-weight: bold;"><%= user.following.length %></span> Following
                     </li>
-
-                </ul>
 
             </div>
 
@@ -67,8 +67,9 @@
             <h4>Posts</h4>
         </div>
 
-
-        <div class="container">
+        <% console.log(posts.length) %> 
+  <% if(posts.length) {%> 
+        <div class="container mb-4">
             <% for(let post of posts) {%>
 
                 <% if(post.author._id.equals(user._id)) {%>
@@ -92,7 +93,11 @@
                         <%}%>
         </div>
 
-    
+    <%} else {%>
+        <div class="d-flex mb-4" style="justify-content:center; color: teal;">
+        <h2>No Post Yet!</h2>
+    </div>
+        <% } %>  
     
     </div>
     

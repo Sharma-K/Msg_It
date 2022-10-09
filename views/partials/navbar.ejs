@@ -22,7 +22,7 @@
           </ul>
           <div class="mx-auto order-0">
           <!-- <form class="d-flex" role="search"> -->
-            <input class="form-control me-2" id="search-box" onkeyup="sendData(this)" type="text" placeholder="Find People" aria-label="Search" style="width: 600px;">
+            <input class="form-control me-2" id="search-box" onkeyup="sendData(this)" type="text" placeholder="Find People" aria-label="Search" >
             <!-- <button class="btn btn-primary bsearch" type="submit">Search</button> -->
           <!-- </form> -->
           <div class="search">
@@ -37,7 +37,7 @@
             <a class="nav-link" href="/login">Login</a>
             <a class="nav-link" href="/register">Register</a>
             <% }else {%> 
-           <% console.log('hey',currentUser) %> 
+           
               <a class="nav-link" class="dpicon" href="/profile/<%=currentUser._id%>">
                 <% if(!currentUser.image.length) {%>
                 <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" width="30px" alt=".."> 
