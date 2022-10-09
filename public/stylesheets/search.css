@@ -2,7 +2,7 @@
     
     display: flex;
    border-radius: 3px;
-    width: 400px;
+    width: 351px;
     box-shadow: 5px 6px 15px rgb(47, 47, 47);
     position: absolute;
     background-color: white;
@@ -61,7 +61,7 @@ position: relative;
 .searchposts  {
     text-decoration: none;
     color: black;
-  width: 500px;
+  width: 400px;
    border-radius: 2px;
   background-color: rgb(235, 233, 233);
    box-shadow: 5px 6px 15px rgb(81, 81, 81);

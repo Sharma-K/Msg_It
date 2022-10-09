@@ -23,8 +23,12 @@
         <div class="home-nav" id="navbar">
             <ul>
                 <a href="/posts">Posts</a>
-                <a href="/me">Account</a>
-                <a href="/contact">Contact Us</a>
+                <%if(currentUser)  {%> 
+                <a href="/profile/<%=currentUser._id%>">Account</a>
+                <% } else{%>
+                    <a href="/login">Login</a>
+                    <% } %>  
+                <a href="https://sharma-k-portfolio.netlify.app">Contact Me</a>
             </ul>
         </div>
         <div class="front-text">
