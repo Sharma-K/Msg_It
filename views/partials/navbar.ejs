@@ -37,9 +37,13 @@
             <a class="nav-link" href="/login">Login</a>
             <a class="nav-link" href="/register">Register</a>
             <% }else {%> 
-           
+           <% console.log('hey',currentUser) %> 
               <a class="nav-link" class="dpicon" href="/profile/<%=currentUser._id%>">
+                <% if(!currentUser.image.length) {%>
                 <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" width="30px" alt=".."> 
+                <% }else {%> 
+                  <img src="<%= currentUser.image[0].url %>" class="rounded-circle" width="40px" height="40px" alt="">
+                  <% } %> 
               </a>
            
             <a class="nav-link" href="/logout">Logout</a>
@@ -86,4 +90,6 @@
       });
     }
     }
+
+
   </script>

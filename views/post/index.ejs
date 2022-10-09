@@ -43,7 +43,12 @@
   <div class="index_cards ">
     <div class="index-card-container">
       <div class="idxprofile">
-        <img src="<%=user.image[0].url%>" class="index-card-profile" alt="...">
+        <%if(user.image.length)  {%> 
+          <img src="<%=user.image[0].url%>" class="index-card-profile"  alt="...">
+          <%} else {%> 
+             <img src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" class="index-card-profile"  alt="">
+             <% } %> 
+       
       </div>
       <div class="col-md-8">
         <div class="idx-card-body">

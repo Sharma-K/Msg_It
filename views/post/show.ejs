@@ -1,20 +1,24 @@
 <%- layout('layout/boilerplate') %>
 
-     
- <div class="container-show">
+<div class="show-body">
+ <div class="container-show" >
    <!-- <a class="goback" href="/posts">
       <img src="https://cdn-icons-png.flaticon.com/512/93/93634.png" width="70px" alt="go back!">
     </a> -->
 <div class="card show-card mt-3">
    <div class="d-flex flex-columns m-3">
+      <%if(user.image.length)  {%> 
       <img src="<%=user.image[0].url%>" class="rounded-circle" width="60px" height="50px" alt="...">
+      <%} else {%> 
+         <img src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" class="rounded-circle" width="60px" height="50px" alt="">
+         <% } %> 
       <div class="d-block">
       
-      <a href="/profile/<%=user._id  %>" class="ms-3"><%= post.author.username %></a>
-     
+      <h1><a href="/profile/<%=user._id  %>" class="ms-3"><%= post.author.username %></a>
+     </h1>
       </div>
    </div>
-   <h2 class="card-title ms-3"><%=post.title %> </h2>
+   <h3 class="card-title ms-3"><%=post.title %> </h3>
    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         
@@ -52,7 +56,8 @@
  
    </div>
  <% } %> 
- <div class="m-2">
+ <div class="m-4 likediv">
+   <div>
  <% if(!post.likedPost.includes(currentUser._id)) {%> 
    <form action="/posts/<%=post._id%>/like" method="post"  >
       <%=post.likes %>
@@ -70,24 +75,28 @@
             </button>
          </form>
       <% } %>  
+   </div>
+      <div class="ms-4">
+         <%= post.comments.length %> 
+         <img src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" class="ms-2 cbox" width="25px" alt="" onclick="cshow()">
+      </div>
  </div>
+
+
+
+
+
+
 </div>
-</div>
 
-
-
-
-
-</div>
-
-<div class="container d-flex flex-column mt-3">
-   <div class="row">
+<div class="container m-3" id="cbox-con">
+   
 <form action="/posts/<%=post._id%>/comments" method="post">
-<div class="col-md-3 offset-md-2">
+
    <label for="body">Add a comment:</label>
-   <textarea name="comment[body]" id="body" cols="100" rows="4"></textarea>
+   <textarea name="comment[body]" id="body" cols="50" rows="2"></textarea>
    <div>
-      <button class="btn btn-success mb-3">Submit</button>
+      <button class="btn btn-primary mb-3">Submit</button>
       </div>
 </div>
 
@@ -106,38 +115,35 @@
 
               
                <div class="card-body">
-                  <div class="d-flex flex-columns">
+                  <div class="d-flex" >
                   <img src="<%=comment.author.image[0].url%>" class="rounded-circle" width="40px" height="35px" alt="...">
                  
                   <div class="comment-content">
+                     
                 <h7 class="text-muted ms-3"><%= comment.author.username %> </h7>
-                
+                </div>
+                <div class="dropdownc" tabindex="-1">
+                  <div class="three-dots" id="three-dots" onclick="drop()"></div>
+                  <div class="dropdown" id="dropdown">
+                     <% if(currentUser && (comment.author.equals(currentUser._id) || post.author.equals(currentUser._id))) {%> 
+                        <form action="/posts/<%=post._id%>/comments/<%=comment._id%>?_method=DELETE" method="post" >
+                          <button type="submit">Delete</button>
+                        </form>
+                        <% } %> 
+                   
+                     <button>Report</button>
+                   
+                  </div>
                
-                <h6 class="ms-3"><%= comment.body %></h6>
+               
+                
                 
                </div>
-               
             </div>
+            <h6 class="ms-5"><%= comment.body %></h6>
             
              </div>
-             <div class="dropdown-container" tabindex="-1">
-               <div class="three-dots"></div>
-               <div class="dropdown">
-                  <% if(currentUser && comment.author.equals(currentUser._id)) {%> 
-                     <form action="/posts/<%=post._id%>/comments/<%=comment._id%>?_method=DELETE" method="post" >
-                       <button>Delete</button>
-                     </form>
-                     <% } %> 
-                <form action="/repComment">
-                  <button>Report</button>
-                </form>
-               </div>
-             </div>
-             <% if(currentUser && comment.author.equals(currentUser._id)) {%>
-             <form action="/posts/<%=post._id%>/comments/<%=comment._id%>?_method=DELETE" method="post">
-               <button type="submit">Delete</button>
-             </form>
-             <% } %> 
+           
              </div>
             <% }} else {%> 
                <h2>
@@ -147,12 +153,21 @@
 
       
 </div>
+</div>
 
+<script>
+   function drop(){
+//   console.log('clicked');
+  const dropdown = document.getElementById('dropdown');
 
-  <script>
-   function like(){
-      
-      console.log('clicked');
+  dropdown.classList.toggle('dropvisible');
 
    }
-  </script>
+
+   function cshow()
+   {
+      console.log('clicked')
+      const box = document.getElementById('cbox-con');
+      box.classList.toggle('cactive');
+   }
+</script>

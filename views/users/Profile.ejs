@@ -3,7 +3,11 @@
     <div class="profile-body" id="blur">
         <div class="container mt-4">
 
-            <img src="<%= user.image[0].url %>" class="profile-photo mx-auto d-block" alt="..">
+            <%if(user.image.length)  {%> 
+                <img src="<%=user.image[0].url%>" class="profile-photo mx-auto d-block" alt="...">
+                <%} else {%> 
+                   <img src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" class="profile-photo mx-auto d-block" alt="">
+                   <% } %> 
         </div>
 
 
@@ -91,7 +95,11 @@
     
     <div class="chat-box" id="chat-box">
         <div class="chat-heading">
-        <img src="<%= user.image[0].url %>" alt="">
+            <%if(user.image.length)  {%> 
+                <img src="<%=user.image[0].url%>" alt="...">
+                <%} else {%> 
+                   <img src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"  alt="">
+                   <% } %> 
         <h3><%=user.username%> </h3>
         <div class="close">
          <img onclick="chatbox()" src="https://cdn-icons-png.flaticon.com/512/3018/3018465.png" ></img>
