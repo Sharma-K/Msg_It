@@ -118,7 +118,7 @@ app.post('/searchPosts', async(req, res)=>{
   app.use('/posts', postroutes);
   app.use('/posts/:id/comments', commentRoutes);
 
-  app.get('/home', (req, res) => {
+  app.get('/', (req, res) => {
     res.render('home');
   })
   
