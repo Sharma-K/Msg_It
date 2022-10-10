@@ -1,6 +1,6 @@
 
 console.log('inside chatEngine');
-const socket = io.connect('http://localhost:5000');
+const socket = io.connect(window.location.hostname);
 
 const form = document.getElementById('send-container');
 const input = document.getElementById('input');

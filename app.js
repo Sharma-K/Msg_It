@@ -25,7 +25,7 @@ const Post = require('./models/post');
 const chatServer = require('http').Server(app);
 const chatSocket = require('./chat_socket').chatSocket(chatServer);
 
-
+const port = process.env.PORT || 3000;
 
 
 
@@ -133,7 +133,7 @@ app.post('/searchPosts', async(req, res)=>{
     if (!err.message) err.message = 'Oh No, Something Went Wrong!'
     res.status(statusCode).render('error', { err })
   })
-  const port = process.env.PORT || 3000;
+  
   app.listen(port, ()=>{
       console.log('Serving on port 3000');
   })
