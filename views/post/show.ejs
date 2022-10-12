@@ -117,8 +117,12 @@
               
                <div class="card-body">
                   <div class="d-flex" >
+                     <% if(comment.author.image[0].url)  {%> 
                   <img src="<%=comment.author.image[0].url%>" class="rounded-circle" width="40px" height="35px" alt="...">
-                 
+                 <% } else{%>
+                  <img src="https://cdn-icons-png.flaticon.com/512/2356/2356780.png" class="rounded-circle" width="40px" height="35px" alt="...">
+                  <% } %> 
+                  
                   <div class="comment-content">
                      
                 <h7 class="text-muted ms-3"><%= comment.author.username %> </h7>

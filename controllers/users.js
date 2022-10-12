@@ -89,10 +89,7 @@ module.exports.myProfile = async(req, res) =>{
 
 module.exports.follow = async(req, res) =>{
 
-    // const {id}= req.params;
-    
-    // const check = await User.findById(req.user._id);
-    // const user = await User.findById(id);
+   
     const posts = await Post.find({});
 
   
@@ -102,13 +99,10 @@ const user = await User.findById(id)
 
 user.followers.push(req.user._id);
 current.following.push(id);
-// console.log('this is the user', user);
-// console.log('fan', current);
 
 await current.save();
 await user.save();
 res.redirect(`/profile/${id}`);
-// res.render('users/Profile', {user, posts, current});
 
  
 }
@@ -123,28 +117,19 @@ module.exports.unfollow = async(req, res) =>{
     
     user.followers.pull(req.user._id);
     current.following.pull(id);
-    // console.log('this is the user', user);
-    // console.log('fan', current);
-    
+   
     await current.save();
     await user.save();
     res.redirect(`/profile/${id}`);
-    // res.render('users/Profile', {user, posts, current});
-
-    
-
+ 
 }
 
 
 module.exports.chat = async(req, res) =>{
-    // res.send('chat room');
     const { cid, uid} = req.params;
     const current = await User.findById(cid);
     const user = await User.findById(uid);
-    // io.on('connection', socket=>{
-    //     console.log('io connection');
-    // })
-    // console.log(current,user);
+ 
     res.render('users/chat', {current, user});
     
 }
