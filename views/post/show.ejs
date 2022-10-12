@@ -117,10 +117,10 @@
               
                <div class="card-body">
                   <div class="d-flex" >
-                     <% if(comment.author.image[0].url)  {%> 
+                     <% if(comment.author.image.length>1)  {%> 
                   <img src="<%=comment.author.image[0].url%>" class="rounded-circle" width="40px" height="35px" alt="...">
                  <% } else{%>
-                  <img src="https://cdn-icons-png.flaticon.com/512/2356/2356780.png" class="rounded-circle" width="40px" height="35px" alt="...">
+                  <img src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" class="rounded-circle" width="40px" height="35px" alt="...">
                   <% } %> 
                   
                   <div class="comment-content">
