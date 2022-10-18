@@ -141,6 +141,7 @@
                    
                   </div>
                </div>
+               <% if( currentUser && comment.author.equals(currentUser._id)) %> 
                <form action="/posts/<%=post._id%>/comments/<%=comment._id%>?_method=DELETE" method="post" >
                   <button type="submit" style="border: none; background-color: lightgrey;">
                      <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" class="ms-2 cbox" width="25px" alt="">
