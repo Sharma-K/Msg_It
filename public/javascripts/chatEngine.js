@@ -1,7 +1,5 @@
 
-console.log('inside chatEngine');
 const socket = io.connect(window.location.hostname);
-
 const form = document.getElementById('send-container');
 const input = document.getElementById('input');
 const messageContainer = document.querySelector('.msgbox');
@@ -13,7 +11,7 @@ class chatEngine{
         this.msgbox= document.getElementById(msgbox);
         this.user_name=user;
  
-        this.socket = io.connect('http://localhost:5000');
+        this.socket = io.connect(window.location.hostname);
 
         if(this.user_name){
             this.connectionHandler();
