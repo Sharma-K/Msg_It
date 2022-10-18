@@ -127,8 +127,9 @@
                      
                 <h7 class="text-muted ms-3"><%= comment.author.username %> </h7>
                 </div>
+
                 <div class="dropdownc" tabindex="-1">
-                  <div class="three-dots" id="three-dots" onclick="drop()"></div>
+                  <!-- <div class="three-dots" id="three-dots" onclick="drop()"></div> -->
                   <div class="dropdown" id="dropdown">
                      <% if(currentUser && (comment.author.equals(currentUser._id) || post.author.equals(currentUser._id))) {%> 
                         <form action="/posts/<%=post._id%>/comments/<%=comment._id%>?_method=DELETE" method="post" >
@@ -139,11 +140,12 @@
                      <button>Report</button>
                    
                   </div>
-               
-               
-                
-                
                </div>
+               <form action="/posts/<%=post._id%>/comments/<%=comment._id%>?_method=DELETE" method="post" >
+                  <button type="submit" style="border: none; background-color: lightgrey;">
+                     <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" class="ms-2 cbox" width="25px" alt="">
+                  </button>
+                </form>
             </div>
             <h6 class="ms-5"><%= comment.body %></h6>
             

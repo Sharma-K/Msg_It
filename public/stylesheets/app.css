@@ -94,6 +94,7 @@ a:hover {
     animation-duration: 2ms;
 }
 
+
 .container-index {
     display: flex;
     /* align-items: center; */
@@ -448,6 +449,8 @@ a:hover {
  bottom: 0;
  padding-top: 40px;
 }
+
+
 
 @media only screen and (max-width: 615px ) {
 
