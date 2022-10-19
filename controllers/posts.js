@@ -46,7 +46,7 @@ var fulltime = currentdate.getDate() + "/"
       }
    
     await posts.save();
-    console.log(posts);
+    // console.log(posts);
     user.save();
     req.flash('success', 'Successfully created a new post!')
     res.redirect(`/posts/${posts._id}`);
@@ -121,14 +121,6 @@ const user = await User.findById(post.author._id);
     res.render('post/show', {post, user});
 }
 
-module.exports.follow = async(req, res) =>{
-    const {id} = req.params;
-    const user = await User.findById(id);
-    const fromuser = await User.findById(req.user._id);
-    const posts = await Post.findById(user._id);
-
-   res.render('users/Profile', {user, posts});
-}
 
 module.exports.deletePost = async (req, res) => {
     const { id } = req.params;
