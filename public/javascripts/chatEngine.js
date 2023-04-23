@@ -14,8 +14,6 @@ class chatEngine{
  
         // this.socket = io.connect('https://sharma-k-msgit.onrender.com/');
         this.socket = io.connect('http://localhost:5000');
-
-
         if(this.user_name){
             this.connectionHandler();
         }
