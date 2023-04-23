@@ -12,7 +12,7 @@ module.exports.register = async (req, res, next) => {
    
        
   try{
-    console.log('this is request body',req.body);
+    // console.log('this is request body',req.body);
         const { email, username, password, description } = req.body;
         const user = new User({ email, username });
         user.image = req.files.map(img => ({url: img.path, filename: img.filename}));

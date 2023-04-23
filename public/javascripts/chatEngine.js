@@ -1,5 +1,6 @@
 
 const socket = io.connect(window.location.hostname);
+// const socket = io.connect('https://sharma-k-msgit.onrender.com/')
 const form = document.getElementById('send-container');
 const input = document.getElementById('input');
 const messageContainer = document.querySelector('.msgbox');
@@ -11,7 +12,9 @@ class chatEngine{
         this.msgbox= document.getElementById(msgbox);
         this.user_name=user;
  
+        // this.socket = io.connect('https://sharma-k-msgit.onrender.com/');
         this.socket = io.connect('http://localhost:5000');
+
 
         if(this.user_name){
             this.connectionHandler();

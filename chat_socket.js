@@ -11,7 +11,7 @@ module.exports.chatSocket = function(socketServer){
     
 
     io.sockets.on('connection', function(socket){
-        console.log('new connection received', socket.id);
+        // console.log('new connection received', socket.id);
 
 
         socket.on('disconnect', function(){

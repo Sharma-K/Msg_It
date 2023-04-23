@@ -14,7 +14,7 @@ module.exports.addComment = async(req, res) =>{
 }
 
 module.exports.deleteComment = async(req, res) =>{
-    console.log('Going to delete');
+    // console.log('Going to delete');
      const {id, commentId} = req.params;
      await Post.findByIdAndUpdate(id, {$pull: {comments: commentId}});
      await Comment.findByIdAndDelete(commentId);

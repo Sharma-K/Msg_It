@@ -7,6 +7,6 @@ const {isLoggedIn, isCommentAuthor, isAuthor} = require('../middleware');
 
 router.post('/',isLoggedIn, catchAsync(Comment.addComment));
 
-router.delete('/:commentId',isLoggedIn,isCommentAuthor,catchAsync(Comment.deleteComment));
+router.delete('/:commentId',isLoggedIn,isAuthor,isCommentAuthor,catchAsync(Comment.deleteComment));
 
 module.exports = router;

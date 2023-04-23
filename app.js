@@ -3,6 +3,7 @@ if(process.env.NODE_ENV !== "production")
     require('dotenv').config();
 }
 
+
 const express = require('express');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
@@ -20,17 +21,20 @@ const commentRoutes = require('./routes/comments');
 const ExpressError = require('./utils/ExpressError');
 const MongoDBStore = require('connect-mongo');
 const Post = require('./models/post');
+const cors = require('cors');
 
 //setting up the chat server to be used with socket.io
-const chatServer = require('http').Server(app);
-const chatSocket = require('./chat_socket').chatSocket(chatServer);
-
 const port = process.env.PORT || 3000;
 
-
-
-
+const chatServer = require('http').Server(app);
 chatServer.listen(5000);
+
+const chatSocket = require('./chat_socket').chatSocket(chatServer);
+
+
+
+
+
 
 // const dbUrl = 'mongodb://localhost:27017/MsgIt' ;
 const dbUrl = process.env.DB_URL
@@ -79,12 +83,12 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser()); // how do we store the user in the session
 passport.deserializeUser(User.deserializeUser()) // how to get user out of the data
+app.use(cors());
 
 
 app.use(flash());
 app.use((req, res, next)=>{
- 
-    res.locals.currentUser = req.user;
+  res.locals.currentUser = req.user;
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   next();
@@ -99,7 +103,7 @@ app.use((req, res, next)=>{
   app.post('/search', async(req, res)=>{
     let payload = req.body.payload.trim();
     // console.log(payload);
-    let search = await User.find({username: {$regex: new RegExp('^'+payload+ '.*', 'i')}}).exec();
+    let search = await User.find({username: {$regex: new RegExp('^'+ payload+ '.*', 'i')}}).exec();
 
     //Limit our search results to 10
 
@@ -109,8 +113,7 @@ app.use((req, res, next)=>{
 
 app.post('/searchPosts', async(req, res)=>{
     let payload = req.body.payload.trim();
-    // console.log(payload);
-    let search = await Post.find({title: {$regex: new RegExp('^'+payload+ '.*', 'i')}}).exec();
+    let search = await Post.find({title: {$regex: new RegExp('^'+ payload+ '.*', 'i')}}).exec();
     search = search.slice(0,10);
     res.send({payload: search});
 })
@@ -135,5 +138,5 @@ app.post('/searchPosts', async(req, res)=>{
   })
   
   app.listen(port, ()=>{
-      console.log('Serving on port 3000');
+      console.log(`Serving on port ${port}`);
   })
